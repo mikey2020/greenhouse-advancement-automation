@@ -3,7 +3,7 @@
   background-image:url('../src/img/home_back.png');
   background-size: cover;
   height: 100vh;
-  display: flex;
+  /* display: flex; */
 }
 .landing-page {
   top: 50%;
@@ -18,13 +18,36 @@
 .logo {
   width: 80%;
 }
-.signin{
+.signin {
   flex: 0 0 auto;
   width: 40%;
   align-self: center;
 }
-.google-btn{
+.google-btn {
   width: 100%;
+}
+
+.nav {
+  background-color: transparent;
+}
+
+select {
+  display: inline;
+}
+
+.advance {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding:  10vh;
+  margin-top:  18vh;
+  border-radius: 10vh;
+}
+
+.notFound {
+  background-color:  rgba(0,0,0,0.5);
+  color: white;
+  padding: 3vh;
+  border-radius:  5vh;
+  cursor: pointer;
 }
 /* 
 .App-logo {
