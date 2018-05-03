@@ -1,19 +1,16 @@
 {
   "name": "greenhouse-advancement-automation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mikey2020/greenhouse-advancement-automation.git"
-  },
-  "author": "ladi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mikey2020/greenhouse-advancement-automation/issues"
-  },
-  "homepage": "https://github.com/mikey2020/greenhouse-advancement-automation#readme"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }
