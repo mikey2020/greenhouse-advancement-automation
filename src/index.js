@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './js/reducers/rootReducer';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
   rootReducer,
@@ -22,4 +22,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();
+// registerServiceWorker();

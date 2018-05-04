@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 import logo from '../../../img/logo_a.png';
+import { getJobs } from '../../actions/jobs';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Advance extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      jobs: this.props.jobs
+    }
+  }
+
+  componentDidMount() {
+    this.props.getJobs();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      jobs: nextProps.jobs
+    })
+  }
+
+
 
   render() {
     return (
@@ -19,7 +40,7 @@ class Advance extends Component {
                 <div className="file-field input-field">
                   <div className="btn">
                     <span>File</span>
-                    <input type="file" />
+                    <input type="file" accept="application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
                   </div>
                   <div className="file-path-wrapper">
                     <input className="file-path validate" type="text" />
@@ -42,9 +63,12 @@ class Advance extends Component {
                 <div className="input-field col s12">
                   <select>
                     <option value="" disabled selected>Select Stage</option>
-                    <option value="1">Stage 1 -> Stage 2</option>
-                    <option value="2">Stage 2 -> Stage 3</option>
-                    <option value="3">Stage 3 -> Stage 4</option>
+                    <option value="1">Saberr -> Qualified</option>
+                    <option value="2">Qualified -> Face to Face</option>
+                    <option value="3">Face to Face -> Bootcamp Scheduling</option>
+                    <option value="4">Bootcamp Scheduling -> Bootcamp Week 1</option>
+                    <option value="5">Bootcamp Week 1 -> Bootcamp Week 2</option>
+                    <option value="6">Bootcamp Week 2 -> Offer</option>
                   </select>
                 </div>
               </div>
@@ -61,4 +85,13 @@ class Advance extends Component {
   }
 }
 
-export default Advance;
+const mapStateToProps = state => (
+  {
+    jobs: state.jobs
+  }
+);
+
+export default connect(
+  mapStateToProps,
+  { getJobs }
+)(withRouter(Advance));
