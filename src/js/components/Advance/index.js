@@ -7,8 +7,8 @@ class Advance extends Component {
     return (
       <div className="App">
         <nav className="nav">
-          <div class="nav-wrapper">
-            <img src={logo} alt="logo" height="80vh" class="brand-logo" />
+          <div className="nav-wrapper">
+            <img src={logo} alt="logo" height="80vh" className="brand-logo" />
           </div>
         </nav>
 
