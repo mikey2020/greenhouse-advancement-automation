@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../../../img/logo_a.png';
 import { getJobs } from '../../actions/jobs';
+import { advance } from '../../actions/advance';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import shortId from 'shortid';
@@ -10,9 +11,12 @@ class Advance extends Component {
     super(props);
     this.state = {
       jobs: this.props.jobs,
-      jobValue: ''
+      jobValue: '',
+      fileLocation: '',
+      stageValue: ''
     }
     this.onChange = this.onChange.bind(this);
+    this.onAdvance = this.onAdvance.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +33,16 @@ class Advance extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  onAdvance(event) {
+    event.preventDefault();
+    let payload = {
+      fileLocation: this.state.fileLocation,
+      jobValue: this.state.jobValue,
+      stageValue: this.state.stageValue
+    }
+    this.props.advance(payload)
   }
 
 
@@ -49,7 +63,12 @@ class Advance extends Component {
                 <div className="file-field input-field">
                   <div className="btn">
                     <span>File</span>
-                    <input type="file" accept="application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                    <input
+                      name="fileLocation"
+                      onChange={this.onChange}
+                      type="file"
+                      accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    />
                   </div>
                   <div className="file-path-wrapper">
                     <input className="file-path validate" type="text" />
@@ -74,21 +93,25 @@ class Advance extends Component {
               </div>
               <div className="col s12 m6">
                 <div className="input-field col s12">
-                  <select>
+                  <select
+                    onChange={this.onChange}
+                    value={this.state.stageValue}
+                    name="stageValue"
+                  >
                     <option value="" disabled selected>Select Stage</option>
-                    <option value="1">Saberr -> Qualified</option>
-                    <option value="2">Qualified -> Face to Face</option>
-                    <option value="3">Face to Face -> Bootcamp Scheduling</option>
-                    <option value="4">Bootcamp Scheduling -> Bootcamp Week 1</option>
-                    <option value="5">Bootcamp Week 1 -> Bootcamp Week 2</option>
-                    <option value="6">Bootcamp Week 2 -> Offer</option>
+                    <option value="QUALIFIED">Saberr -> Qualified</option>
+                    <option value="FACE">Qualified -> Face to Face</option>
+                    <option value="BOOTCAMPSCHEDULE">Face to Face -> Bootcamp Scheduling</option>
+                    <option value="BOOTCAMPWEEK1">Bootcamp Scheduling -> Bootcamp Week 1</option>
+                    <option value="BOOTCAMPWEEK2">Bootcamp Week 1 -> Bootcamp Week 2</option>
+                    <option value="OFFER">Bootcamp Week 2 -> Offer</option>
                   </select>
                 </div>
               </div>
             </div>
             <div className="row">
               <div className="col s12">
-                <a className="waves-effect waves-light btn">ADVANCE</a>
+                <a onClick={this.onAdvance} className="waves-effect waves-light btn">ADVANCE</a>
               </div>
             </div>
           </form>
@@ -106,5 +129,5 @@ const mapStateToProps = state => (
 
 export default connect(
   mapStateToProps,
-  { getJobs }
+  { getJobs, advance }
 )(withRouter(Advance));
